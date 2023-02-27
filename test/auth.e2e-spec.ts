@@ -16,9 +16,9 @@ describe('Auth System (e2e)', () => {
   });
 
   it('/auth (GET)', () => {
-		const email = 't@t.com'
+		const email = 't25252asdfasdfasdf@t.com'
     return request(app.getHttpServer())
-      .get('/auth/signup')
+      .post('/auth/signup')
 			.send({ email, password: 'p' })
       .expect(201)
       .then(res => {
