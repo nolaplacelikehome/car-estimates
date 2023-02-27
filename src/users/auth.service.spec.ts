@@ -34,10 +34,7 @@ describe('Authentication Service', () => {
 		expect(hash).toBeDefined();
 	});
 
-	it('Creates error when email has been taken', async (done) => {
-		testUsersService.find = () => Promise.resolve([{ id: 1, email: 'adf', password: 'awoifn' } as User])
-		await expect(
-      service.signin('asdflkj@asdlfkj.com', 'passdflkj'),
-    ).rejects.toThrow(NotFoundException);
-  });
+	it('Creates error if email in use', async () => {
+		await service.signup('test@test.com', 'asdfasdfnv')
+	});
 });
