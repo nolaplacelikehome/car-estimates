@@ -15,7 +15,7 @@ describe('Auth System (e2e)', () => {
     await app.init();
   });
 
-  it('/auth (GET)', () => {
+  it('/auth (POST)', () => {
 		const email = 't25252asdfasdfasdf@t.com'
     return request(app.getHttpServer())
       .post('/auth/signup')
