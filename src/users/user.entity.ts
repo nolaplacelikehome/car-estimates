@@ -13,6 +13,9 @@ export class User {
 	@Column()
 	password: string;
 
+	@Column({ default: true })
+	admin: boolean;	
+
 	@OneToMany(() => Report, (report) => report.user)
 	reports: Report[];
 
@@ -24,7 +27,6 @@ export class User {
 	@AfterUpdate()
 	logUpdate() {
 		console.log('Updated id', this.id);
-		
 	}
 
 	@AfterRemove()
