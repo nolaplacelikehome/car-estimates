@@ -9,6 +9,8 @@ import { ReportsModule } from './reports/reports.module';
 import { User } from './users/user.entity';
 import { Report } from './reports/report.entity';
 const cookieSession  = require('cookie-session');
+const dbConfig = require('../ormconfig.js');
+import { TypeOrmConfigService } from './config/typeorm.config';
 
 @Module({
   imports: [
@@ -17,15 +19,7 @@ const cookieSession  = require('cookie-session');
       envFilePath: `.env.${process.env.NODE_ENV}`
     }),
     TypeOrmModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => {
-        return {
-          type: 'sqlite',
-          database: config.get<string>('DB_NAME'),
-          synchronize: true,
-          entities: [User, Report]
-        }
-      } 
+      useClass: TypeOrmConfigService,
     }),
     UsersModule, ReportsModule],
   controllers: [AppController],
