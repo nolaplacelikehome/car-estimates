@@ -36,7 +36,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
         autoLoadEntities: true,
         migrationsRun: JSON.parse(this.configService.get<string>('MIGRATIONS_RUN')),
         ssl: {
-          rejectUnauthorized: JSON.parse(this.configService.get<string>('SSL')),
+          rejectUnauthorized: false,
         },
       }
       console.log(obj);
